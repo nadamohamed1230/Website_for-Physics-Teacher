@@ -1,0 +1,70 @@
+﻿@page
+@model DBproject.Pages.registerModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "_Layout2";
+}
+<main class="login-body" data-vide-bg="~/assets/img/hero/h1_hero.png">
+    <!-- Registration Form -->
+    <form class="form-default" action="register" method="POST" data-vide-bg="~/assets/img/hero/h1_hero.png">
+        <div class="login-form">
+            <!-- Logo -->
+            <div class="logo-login">
+                <a href="index.html"><img src="~/assets/img/logo/logo.png" alt=""></a>
+            </div>
+            <h2>انشاء حساب</h2>
+
+            <!-- First Name -->
+            <div class="form-input">
+                <label for="first_name">الاسم</label>
+                <input type="text" name="first_name" id="first_name" placeholder="First Name" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-input">
+                <label for="last_name">اسم العائله</label>
+                <input type="text" name="last_name" id="last_name" placeholder="Last Name" required>
+            </div>
+
+            <!-- National ID -->
+            <div class="form-input">
+                <label for="national_id">الرقم القومى</label>
+                <input type="text" name="national_id" id="national_id" placeholder="National ID" pattern="[0-9]{14}" title="National ID must be exactly 14 digits" required>
+                <small class="form-text text-muted">Please enter your 14-digit National ID.</small>
+            </div>
+
+
+            <!-- Email -->
+            <div class="form-input">
+                <label for="email">البريد الالكترونى</label>
+                <input type="email" name="email" id="email" placeholder="Email Address" required>
+            </div>
+
+            <!-- Parent's Number -->
+            <div class="form-input">
+                <label for="parent_number">رقم ولى الامر</label>
+                <input type="text" name="parent_number" id="parent_number" placeholder="Parent's Number" required>
+            </div>
+
+            <!-- Academic Year Dropdown -->
+            <div class="form-input">
+                <label for="academic_year">السنة الدراسية</label><br>
+                <select name="academic_year" id="academic_year" required>
+                    <option value="">اختار</option>
+                    <option value="1">سنه اولى </option>
+                    <option value="2">سنه تانيه</option>
+                    <option value="3">سنه تالته</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-input pt-30">
+                <input type="submit" name="submit" value="Register">
+            </div>
+
+            <!-- Login Link -->
+            <a href="login" class="registration">لديك حساب بالفعل؟ سجل الدخول</a>
+        </div>
+    </form>
+    <!-- /end registration form -->
+</main>

@@ -1,0 +1,86 @@
+﻿@page
+@model DBproject.Pages.S1Model
+@{
+    ViewData["Title"] = "منصة الاستاذ زكريا مختار";
+    Layout = "_Layout3";
+}
+
+<header class="header">
+    <section class="hero-section">
+        <div class="hero-mask"></div>
+        <div class="container text-center py-5">
+            <div class="single-col-max mx-auto">
+                <h1 class="hero-heading mb-5">
+                    <span class="brand mb-4 d-block">
+                        <span class="text-highlight pr-2">{</span>
+                        <span class="name">محتوى المنهج</span> 
+                        <span class="text-highlight pl-2">}</span>
+                    </span>
+                </h1>
+            </div>
+        </div>
+    </section>
+</header>
+
+<div class="container mt-5">
+    <div class="accordion" id="curriculumAccordion">
+        <!-- First Section -->
+        <div class="card mb-3">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        الفصل الاول
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#curriculumAccordion">
+                <div class="card-body">
+                    <p class="mb-3">الوحدة الأولى: الكهربية التيارية والكهرومغناطيسية</p>
+                    @foreach (var item in Model.Module1Items)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-9">
+                                <a href="@item.VideoUrl" target="_blank">@item.Index- @item.Title</a>
+                            </div>
+                            <div class="col-3 text-end">@item.Duration</div>
+                            <div class="col-12 text-end">
+                                <a href="Quiz">Quiz</a> | <a href="@item.PdfUrl">PDF</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Section -->
+        <div class="card mb-3">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <button class="btn btn-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        الفصل الثاني
+                    </button>
+                </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#curriculumAccordion">
+                <div class="card-body">
+                    <p class="mb-3">تأثير المغناطيسي للتيار الكهربي وأجهزة القياس الكهربي</p>
+                    @foreach (var item in Model.Module2Items)
+                    {
+                        <div class="row mb-2">
+                            <div class="col-9">
+                                <a href="@item.VideoUrl" target="_blank">@item.Index- @item.Title</a>
+                            </div>
+                            <div class="col-3 text-end">@item.Duration</div>
+                            <div class="col-12 text-end">
+                                <a href="Quiz">Quiz</a> | <a href="@item.PdfUrl">PDF</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Add more sections as needed -->
+    </div>
+</div>
