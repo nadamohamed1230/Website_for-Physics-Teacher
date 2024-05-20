@@ -179,7 +179,7 @@
         <!-- Add Multimedia Form -->
         <div class="card mt-4">
             <div class="card-header">
-                <h2>اضافة الوسائط المتعدده</h2>
+                <h2>اضافة الفيديو</h2>
             </div>
             <div class="card-body">
                 <div class="multimedia-container">
@@ -197,10 +197,46 @@
                             <input type="text" class="form-control" id="title" name="Title">
                         </div>
                         <div class="form-group">
-                            <label for="multimedia">لينك الوسائط المتعدده</label>
+                        <label for="title">الفصل</label>
+                        <input type="text" class="form-control" id="title" name="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="multimedia">لينك الفيديو</label>
                             <input type="url" class="form-control" id="multimedia" name="MultimediaLink">
                         </div>
-                        <button type="submit" class="btn btn-primary upload-button">نشر</button>
+                        <button type="submit" class="btn btn-primary upload-button">اضافه</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header">
+                <h2>اضافه PDF  </h2>    
+            </div>
+            <div class="card-body">
+                <div class="multimedia-container">
+                    <form class="multimedia-form" method="post" asp-page-handler="AddMultimedia">
+                        <div class="form-group">
+                            <label for="year">سنه الدراسه:</label>
+                            <select class="form-control" id="year" name="Year">
+                                <option value="1">سنه 1</option>
+                                <option value="2">سنه 2</option>
+                                <option value="3">سنه 3</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">عنوان</label>
+                            <input type="text" class="form-control" id="title" name="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">الفصل</label>
+                            <input type="text" class="form-control" id="title" name="Title">
+                        </div>
+                        <div class="form-group">
+                            <label for="multimedia">لينك ال pdf</label>
+                            <input type="url" class="form-control" id="multimedia" name="MultimediaLink">
+                        </div>
+                        <button type="submit" class="btn btn-primary upload-button">اضافه</button>
                     </form>
                 </div>
             </div>
@@ -224,21 +260,55 @@
                         @foreach (var student in Model.Students)
                         {
                             <tr>
-                                <th scope="row">@student.Id</th>
+                                <th scope="row">@student.NId</th>
                                 <td>@student.Name</td>
                                 <td>@student.Phone</td>
                                 <td>
                                     <form method="post" asp-page-handler="DeleteStudent">
-                                        <input type="hidden" name="Id" value="@student.Id" />
+                                        <input type="hidden" name="Id" value="@student.NId" />
                                         <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form method="post" asp-page-handler="UpdateStudent">
-                                        <input type="hidden" name="Id" value="@student.Id" />
-                                        <button type="submit" class="btn btn-warning">تحديث</button>
+                                    <a href="/updateS?id=@student.NId" class="btn btn-warning">تحديث</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--  TAs Table -->
+        <div class="card mt-5">
+            <div class="card-header">المساعدين </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">الرقم التعريفى</th>
+                            <th scope="col">الاسم</th>
+                            <th scope="col">رقم الهاتف</th>
+                            <th scope="col">حذف</th>
+                            <th scope="col">تحديث</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var TA in Model.TAs)
+                        {
+                            <tr>
+                                <th scope="row">@TA.NID</th>
+                                <td>@TA.Name</td>
+                                <td>@TA.Phone</td>
+                                <td>
+                                    <form method="post" asp-page-handler="DeleteStudent">
+                                        <input type="hidden" name="Id" value="@TA.NID" />
+                                        <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
+                                <td>
+                                    <a href="/updateS?id=@TA.NID" class="btn btn-warning">تحديث</a>
+                                </td>
+                            
                             </tr>
                         }
                         <tr>
@@ -250,20 +320,6 @@
                 </table>
             </div>
         </div>
-
-        <!-- Add TA Form -->
-        <div class="card mt-4">
-            <div class="card-header">اضافة مساعد مدرس</div>
-            <div class="card-body">
-                <div class="text-center mt-3">
-                    <div class="input-group" style="display: inline-flex; width: auto;">
-                        <input type="email" id="taEmail" name="TaEmail" placeholder="ادخل البريد الالكتروني" class="form-control">
-                        <button type="submit" class="btn btn-secondary" asp-page-handler="AddTa">اضافة مساعد مدرس</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Confirmation Section -->
         <div class="card mt-4">
             <div class="card-header">تاكيد الدفع</div>
@@ -299,5 +355,8 @@
             </div>
         </div>
     </div>
+    <!-- ... existing code ... -->
+
+   
 </body>
 </html>

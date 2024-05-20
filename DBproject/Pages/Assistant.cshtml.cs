@@ -36,8 +36,8 @@ namespace DBproject.Pages
 
         public List<Student> Students { get; set; } = new List<Student>
     {
-        new Student { Id = 1, Name = "ÌÊ”›", Phone = "0123456789" },
-        new Student { Id = 2, Name = "„Õ„œ", Phone = "01123456789" }
+        new Student { NId = 1, Name = "ÌÊ”›", Phone = "0123456789" },
+        new Student { NId = 2, Name = "„Õ„œ", Phone = "01123456789" }
     };
 
         public List<Payment> Payments { get; set; } = new List<Payment>
