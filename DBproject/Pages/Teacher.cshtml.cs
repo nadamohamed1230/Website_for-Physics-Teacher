@@ -39,6 +39,15 @@ namespace DBproject.Pages
         [BindProperty]
         public string TaEmail { get; set; }
 
+        [BindProperty]
+        public string NID { get; set; }
+        [BindProperty]
+        public string Name { get; set; }
+        [BindProperty]
+        public string Phone { get; set; }
+        [BindProperty]
+        public string Password { get; set; }
+
         public List<Student> Students { get; set; }
         public List<Payment> Payments { get; set; }
         public List<TAs> TAs { get; set; }
@@ -110,15 +119,28 @@ namespace DBproject.Pages
 
         public IActionResult OnPostAddTA()
         {
-            // Add TA to the database or process it as needed
-            // ...
+            if (NID.Length == 14)
+            {
+                // Add TA to the database or process it as needed
+                // ...
 
-            return RedirectToPage();
+                return RedirectToPage("Teacher");
+            }
+            ModelState.AddModelError("NID", "NID must be 14 characters long.");
+            return Page();
         }
 
         public IActionResult OnPostDeleteStudent(int id)
         {
             // Delete student from the database or process it as needed
+            // ...
+
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostConfirmPayment(int id)
+        {
+            // Confirm payment for the student or process it as needed
             // ...
 
             return RedirectToPage();
@@ -145,5 +167,6 @@ namespace DBproject.Pages
         public int NID { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
+        public string Password { get; set; }
     }
 }
