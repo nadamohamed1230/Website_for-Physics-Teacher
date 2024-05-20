@@ -117,18 +117,18 @@
                 @foreach (var student in Model.Students)
                 {
                     <tr>
-                        <th scope="row">@student.Id</th>
+                        <th scope="row">@student.NId</th>
                         <td>@student.Name</td>
                         <td>@student.Phone</td>
                         <td>
                             <form method="post" asp-page-handler="DeleteStudent">
-                                <input type="hidden" name="Id" value="@student.Id" />
+                                <input type="hidden" name="Id" value="@student.NId" />
                                 <button type="submit" class="btn btn-danger">حذف</button>
                             </form>
                         </td>
                         <td>
                             <form method="post" asp-page-handler="UpdateStudent">
-                                <input type="hidden" name="Id" value="@student.Id" />
+                                <input type="hidden" name="Id" value="@student.NId" />
                                 <button type="submit" class="btn btn-warning">تحديث</button>
                             </form>
                         </td>
