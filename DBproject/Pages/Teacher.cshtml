@@ -110,40 +110,9 @@
             <div class="card-header">اضف السؤال الي بنك الاسئله</div>
             <div class="card-body">
                 <div class="container">
-                    <div class="question-form">
-                        <form method="post" asp-page-handler="AddQuestion">
-                            <div class="form-group">
-                                <label for="question">السؤال</label>
-                                <textarea class="form-control" id="question" name="Question" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="answer1">الاجابه الاولي</label>
-                                <input type="text" class="form-control" id="answer1" name="Answer1">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer2">الاجابه الثانيه:</label>
-                                <input type="text" class="form-control" id="answer2" name="Answer2">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer3">الاجابه الثالثه</label>
-                                <input type="text" class="form-control" id="answer3" name="Answer3">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer4">الاجابه الرابعه</label>
-                                <input type="text" class="form-control" id="answer4" name="Answer4">
-                            </div>
-                            <div class="form-group">
-                                <label for="correct-answer">الاجابه الصحيحه</label>
-                                <select class="form-control" id="correct-answer" name="CorrectAnswer">
-                                    <option value="Answer1">الاجابه الاولي</option>
-                                    <option value="Answer2">الاجابه الثانيه</option>
-                                    <option value="Answer3">الاجابه الثالثه</option>
-                                    <option value="Answer4">الاجابه الرابعه</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">اضف السؤال</button>
-                        </form>
-                    </div>
+                    <form method="post">
+                        <button class="btn btn-lg btn-block" asp-page-handler="AddQuestion">اضافه سؤال</button>
+                    </form>
                 </div>
             </div>
         </div>
