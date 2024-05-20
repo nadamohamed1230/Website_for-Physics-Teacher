@@ -49,13 +49,7 @@ namespace DBproject.Pages
         {
             if (ModelState.IsValid)
             {
-                /*                HttpContext.Session.SetString("chapter", chapter);
-                                HttpContext.Session.SetString("Question", Question);
-                                HttpContext.Session.SetString("aanswer1", Answer1);
-                                HttpContext.Session.SetString("Answer2", Answer2);
-                                HttpContext.Session.SetString("Answer3", Answer3);
-                                HttpContext.Session.SetString("Answer4", Answer4);
-                */
+
 
                 string ch = chapter;
                 string q = Question;

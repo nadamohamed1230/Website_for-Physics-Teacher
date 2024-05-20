@@ -7,42 +7,14 @@
 <div class="card mt-4">
     <div class="card-header">اضف السؤال الي بنك الاسئله</div>
     <div class="card-body">
-        <div class="question-form">
-            <form method="post" asp-page-handler="AddQuestion">
-                <div class="form-group">
-                    <label for="question">السؤال</label>
-                    <textarea class="form-control" id="question" name="Question" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="answer1">الاجابه الاولي</label>
-                    <input type="text" class="form-control" id="answer1" name="Answer1">
-                </div>
-                <div class="form-group">
-                    <label for="answer2">الاجابه الثانيه:</label>
-                    <input type="text" class="form-control" id="answer2" name="Answer2">
-                </div>
-                <div class="form-group">
-                    <label for="answer3">الاجابه الثالثه</label>
-                    <input type="text" class="form-control" id="answer3" name="Answer3">
-                </div>
-                <div class="form-group">
-                    <label for="answer4">الاجابه الرابعه</label>
-                    <input type="text" class="form-control" id="answer4" name="Answer4">
-                </div>
-                <div class="form-group">
-                    <label for="correct-answer">الاجابه الصحيحه</label>
-                    <select class="form-control" id="correct-answer" name="CorrectAnswer">
-                        <option value="answer1">الاجابه الاولي</option>
-                        <option value="answer2">الاجابه الثانيه</option>
-                        <option value="answer3">الاجابه الثالثه</option>
-                        <option value="answer4">الاجابه الرابعه</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">اضف السؤال</button>
+        <div class="container">
+            <form method="post">
+                <button class="btn btn-secondary btn-lg btn-block" asp-page-handler="AddQuestion">اضافه سؤال</button>
             </form>
         </div>
     </div>
 </div>
+
 
 <div class="quiz-form card mt-4">
     <div class="card-header">مُنشئ الاختبارات</div>

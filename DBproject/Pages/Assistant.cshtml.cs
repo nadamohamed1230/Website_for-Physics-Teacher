@@ -5,7 +5,7 @@ namespace DBproject.Pages
 {
     public class AssistantModel : PageModel
     {
-        [BindProperty]
+/*        [BindProperty]
         public string Question { get; set; }
         [BindProperty]
         public string Answer1 { get; set; }
@@ -16,7 +16,7 @@ namespace DBproject.Pages
         [BindProperty]
         public string Answer4 { get; set; }
         [BindProperty]
-        public string CorrectAnswer { get; set; }
+        public string CorrectAnswer { get; set; }*/
 
         [BindProperty]
         public string Hardness { get; set; }
@@ -53,7 +53,7 @@ namespace DBproject.Pages
         public IActionResult OnPostAddQuestion()
         {
             // Add question logic
-            return RedirectToPage();
+            return RedirectToPage("/addingQue");
         }
 
         public IActionResult OnPostGenerateQuiz()
