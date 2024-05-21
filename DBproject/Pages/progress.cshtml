@@ -5,48 +5,43 @@
     Layout = "_DashboardLayout";
 }
 
-                        }
-
-                        <h2 class="header">Progress Report</h2>
-                        <div class="student-info">
-                            <div class="info-item">
-                                <label>Name:</label> <span>Nada Mohamed</span>
-                            </div>
-                            <div class="info-item">
-                                <label>Student ID:</label> <span>@Model.id</span>
-                            </div>
-                            <div class="info-item">
-                                <label>Academic Year:</label> <span>Year 2</span>87888
-                            </div>
-                        </div>
-                        <canvas id="quizChart"></canvas>
+@using System.Data
+@using DBproject.Pages 
 
 
+<h2 class="header">Progress Report</h2>
+<div class="student-info">
+    <div class="info-item">
+        <label>Name:</label> <span>@Model.CurrentUser.FirstName @Model.CurrentUser.LastName</span>
+    </div>
+    <div class="info-item">
+        <label>Student ID:</label> <span>@Model.CurrentUser.ID</span>
+    </div>
+    <div class="info-item">
+        <label>Academic Year:</label> <span>@Model.CurrentUser.AcademicYear</span>
+    </div>
+</div>
 
+<canvas id="quizChart"></canvas>
 
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>topic</th>
-                                    <th>grade</th>
-                                    <th>total grade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (int i = 0; i < @Model.grades.Rows.Count; i++)
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Topic</th>
+            <th>Grade</th>
+            <th>Total Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow row in Model.grades.Rows)
         {
             <tr>
-                <td>@(i + 1)</td>
-                @for (int j = 0; j < 3; j++)
-                {
-                    <td>@Model.grades.Rows[i][j]</td>
-                }
-
+                <td>@row["RowNumber"]</td>
+                <td>@row["Topic"]</td>
+                <td>@row["Grade"]</td>
+                <td>@row["TotalGrade"]</td>
             </tr>
         }
     </tbody>
-
-
-
 </table>
