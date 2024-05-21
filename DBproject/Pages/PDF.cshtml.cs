@@ -24,8 +24,7 @@ namespace DBproject.Pages
 
         [BindProperty]
         public string MultimediaLink { get; set; }
-        [BindProperty]
-        public long TId { get; set; }
+       
         public void OnGet()
         {
         }
