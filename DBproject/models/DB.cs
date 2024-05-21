@@ -398,49 +398,51 @@ namespace DBproject.models
                 con.Close();
             }
         }
-        //public void AddPdf(string pdfUrl, int acYear, string chapter, string title, long tId)
-        //{
-        //    string multimediaQuery = "INSERT INTO MultiMedia (ac_year, Chapter, title, T_ID) OUTPUT INSERTED.M_ID VALUES (@AcYear, @Chapter, @Title, @TId)";
-        //    string pdfQuery = "INSERT INTO PDFs (pdf_url, M_ID) VALUES (@PdfUrl, @MId)";
+        public void AddVideo(string videoUrl, int acYear, string chapter, string title, long tId)
+        {
+            string multimediaQuery = "INSERT INTO MultiMedia (ac_year, Chapter, title, T_ID) OUTPUT INSERTED.M_ID VALUES (@AcYear, @Chapter, @Title, @TId)";
+            string videoQuery = "INSERT INTO Videos (video_url, M_ID) VALUES (@VideoUrl, @MId)";
 
-        //    try
-        //    {
+            try
+            {
+                con.Open();
 
-        //        con.Open();
+                int insertedId;
+                using (SqlCommand cmd = new SqlCommand(multimediaQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@AcYear", acYear);
+                    cmd.Parameters.AddWithValue("@Chapter", chapter);
+                    cmd.Parameters.AddWithValue("@Title", title);
+                    cmd.Parameters.AddWithValue("@TId", tId);
 
-        //        int insertedId;
-        //        using (SqlCommand cmd = new SqlCommand(multimediaQuery, con))
-        //        {
-        //            cmd.Parameters.AddWithValue("@AcYear", acYear);
-        //            cmd.Parameters.AddWithValue("@Chapter", chapter);
-        //            cmd.Parameters.AddWithValue("@Title", title);
-        //            cmd.Parameters.AddWithValue("@TId", tId);
+                    insertedId = (int)cmd.ExecuteScalar();
+                }
 
-        //            insertedId = (int)cmd.ExecuteScalar();
-        //        }
+                if (insertedId > 0)
+                {
+                    using (SqlCommand videoCmd = new SqlCommand(videoQuery, con))
+                    {
+                        videoCmd.Parameters.AddWithValue("@VideoUrl", videoUrl);
+                        videoCmd.Parameters.AddWithValue("@MId", insertedId);
+                        videoCmd.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    throw new Exception("Failed to insert multimedia record.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
-        //        Only execute the PDF insert if the multimedia insert was successful
-        //            if (insertedId > 0)
-        //        {
-        //            using (SqlCommand pdfCmd = new SqlCommand(pdfQuery, con))
-        //            {
-        //                pdfCmd.Parameters.AddWithValue("@PdfUrl", pdfUrl);
-        //                pdfCmd.Parameters.AddWithValue("@MId", insertedId);
-        //                pdfCmd.ExecuteNonQuery();
-        //            }
-        //        }
-        //        else
-        //        {
-        //            throw new Exception("Failed to insert multimedia record.");
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Error: " + ex.Message);
-        //        throw;
-        //    }
-        //}
         public int InsertMultimediaRecord(int acYear, string chapter, string title, long tId)
         {
             string s = "Data Source=SQL6032.site4now.net; Initial Catalog=db_aa83e2_nadamohamed123001;User ID=db_aa83e2_nadamohamed123001_admin;Password=_123456_789_NDAY";
