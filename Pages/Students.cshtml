@@ -1,0 +1,110 @@
+﻿@page
+@model DBproject.Pages.StudentsModel
+@{
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الطلاب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+        }
+
+        .btn-warning {
+            background-color: #ff9800;
+        }
+
+        .btn-success {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>الطلاب</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">الرقم التعريفى</th>
+                    <th scope="col">الاسم</th>
+                    <th scope="col">رقم الهاتف</th>
+                    <th scope="col">حالة الدفع</th>
+                    <th scope="col">تحديث</th>
+                    <th scope="col">تغيير الحاله</th>
+                    <th scope="col">حذف</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model.Students)
+                {
+                    <tr>
+                        <td>@student.NId</td>
+                        <td>@student.FullName</td>
+                        <td>@student.Phone</td>
+                        <td>@student.PayState</td>
+                        <td>
+                            <a href="/updateS?id=@student.NId" class="btn btn-warning">تحديث</a>
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="ConfirmPayment">
+                                <input type="hidden" name="Id" value="@student.NId" />
+                                <button type="submit" class="btn btn-success">تغيير الحاله</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form method="post" asp-page-handler="DeleteStudent">
+                                <input type="hidden" name="Id" value="@student.NId" />
+                                <button type="submit" class="btn btn-danger">حذف</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
