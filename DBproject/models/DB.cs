@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DBproject.Pages;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection.Emit;
@@ -519,14 +520,52 @@ namespace DBproject.models
             }
         }
 
+        public List<QuizStudent> GetStudentQuizzes(long studentId)
+        {
+            List<QuizStudent> quizzes = new List<QuizStudent>();
+            string query = "SELECT Q_ID, grade FROM quizzstudent WHERE snID = @StudentId";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@StudentId", studentId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        quizzes.Add(new QuizStudent
+                        {
+                            Q_ID = Convert.ToInt32(reader["Q_ID"]),
+                            Grade = Convert.ToInt32(reader["grade"])
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return quizzes;
+        }
 
 
     }
 
 }
+public class QuizStudent
+{
+    public int Q_ID { get; set; }
+    public int Grade { get; set; }
+}
 
 
-    public class Student
+public class Student
     {
         public string NId { get; set; }
         public string FName { get; set; }
