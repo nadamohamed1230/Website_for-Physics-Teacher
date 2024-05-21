@@ -100,3 +100,33 @@
     </div>
 </body>
 </html>
+
+
+       @*                  public void UpdateStudentInDatabase(Student student)
+        {
+            string query = "UPDATE Student SET Fname = @Fname, Lname = @Lname, pnum = @Phone, mail = @Mail, ac_year = @AcYear, pay_state = @PayState WHERE nID = @NID";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@NID", student.NId);
+                    cmd.Parameters.AddWithValue("@Fname", student.FName);
+                    cmd.Parameters.AddWithValue("@Lname", student.LName);
+                    cmd.Parameters.AddWithValue("@Phone", student.Phone);
+                    cmd.Parameters.AddWithValue("@Mail", student.Mail);
+                    cmd.Parameters.AddWithValue("@AcYear", student.AcYear);
+                    cmd.Parameters.AddWithValue("@PayState", student.PayState);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        } *@

@@ -10,18 +10,20 @@ namespace DBproject.Pages
 
         public List<TAs> TAs { get; set; }
 
-      
+        DB db = new DB();
 
         public void OnGet()
         {
-            DB db = new DB();
+         
             TAs = db.GetAssistants(); // Call the method from your DB class to fetch TAs
         }
 
-        public IActionResult OnPostDeleteTAs(string id)
+        public IActionResult OnPostDeleteTAs(long id)
         {
-            //_db.DeleteTA(id); // Call the method from your DB class to delete TA
+            db.DeleteTA(id); // Call the method from your DB class to delete TA
             return RedirectToPage();
         }
     }
 }
+
+

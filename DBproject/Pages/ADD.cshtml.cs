@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DBproject.Pages
 {
-    public class AddModel : PageModel
+    public class ADDModel : PageModel
     {
         [BindProperty]
         public string NID { get; set; }

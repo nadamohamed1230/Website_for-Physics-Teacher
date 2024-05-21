@@ -9,7 +9,7 @@ namespace DBproject.Pages
         [BindProperty]
         public TAs TA { get; set; }
 
-        public void OnGet(int id)
+        public void OnGet(long id)
         {
             DB db = new DB();
             TA = db.GetAssistantById(id);

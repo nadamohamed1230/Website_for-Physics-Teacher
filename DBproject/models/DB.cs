@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
 
 namespace DBproject.models
 {
@@ -120,6 +121,28 @@ namespace DBproject.models
                 con.Close();
             }
         }
+        public void DeleteTA(long id)
+        {
+            string query = "DELETE FROM Assistant WHERE nID = @NID";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@NID", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
 
         public void UpdateStudentPaymentStatus(string nid, string payState)
         {
@@ -226,7 +249,7 @@ namespace DBproject.models
                 {
                     assistants.Add(new TAs
                     {
-                        NID = Convert.ToInt32(reader["nID"]),
+                        NID = Convert.ToInt64(reader["nID"]),
                         FName = reader["Fname"].ToString(),
                         LName = reader["Lname"].ToString(),
                         Phone = reader["pnum"].ToString()
@@ -241,6 +264,7 @@ namespace DBproject.models
             {
                 con.Close();
             }
+            return assistants;
 
         }
 
@@ -312,7 +336,7 @@ namespace DBproject.models
         }
 
 
-        public TAs GetAssistantById(int id)
+        public TAs GetAssistantById(long id)
         {
             TAs assistant = null;
             string query = "SELECT nID, Fname, Lname, pnum FROM Assistant WHERE nID = @NID";
@@ -328,7 +352,7 @@ namespace DBproject.models
                     {
                         assistant = new TAs
                         {
-                            NID = Convert.ToInt32(reader["nID"]),
+                            NID = Convert.ToInt64(reader["nID"]),
                             FName = reader["Fname"].ToString(),
                             LName = reader["Lname"].ToString(),
                             Phone = reader["pnum"].ToString()
@@ -389,7 +413,7 @@ namespace DBproject.models
     }
     public class TAs
     {
-        public int NID { get; set; }
+        public long NID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string Phone { get; set; }
