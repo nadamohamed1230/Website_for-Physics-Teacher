@@ -1,0 +1,187 @@
+﻿@page
+@model DBproject.Pages.QuizModel
+@{
+    ViewData["Title"] = "منصة الاستاذ زكريا مختار";
+    Layout = "_Layout5";
+}
+@section Styles {
+    <style>
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-end {
+            justify-content: flex-end;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .font-weight-bold {
+            font-weight: bold;
+        }
+
+        .pb-4 {
+            padding-bottom: 1.5rem;
+        }
+
+        .pt-4 {
+            padding-top: 1.5rem;
+        }
+
+        .pt-2 {
+            padding-top: 0.5rem;
+        }
+
+        .mx-3 {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+
+        .pr-1 {
+            padding-right: 0.25rem;
+        }
+
+        .pr-2 {
+            padding-right: 0.5rem;
+        }
+    </style>
+}
+
+<div class="wrapper">
+    <div class="wrap" id="q1">
+        <div class="text-center pb-4">
+            <div class="h5 font-weight-bold"><span id="number"> </span>1 of 3</div>
+        </div>
+        <div class="h4 font-weight-bold">1. Who is the Prime Minister of India?</div>
+        <div class="pt-4">
+            <form>
+                <label class="options">Rahul Gandhi <input type="radio" name="q1" value="Rahul Gandhi"> <span class="checkmark"></span> </label>
+                <label class="options">Indira Gandhi <input type="radio" name="q1" value="Indira Gandhi"> <span class="checkmark"></span> </label>
+                <label class="options">Narendra Modi <input type="radio" name="q1" value="Narendra Modi" checked> <span class="checkmark"></span> </label>
+                <label class="options">Ram Nath Kovind <input type="radio" name="q1" value="Ram Nath Kovind"> <span class="checkmark"></span> </label>
+            </form>
+        </div>
+        <div class="d-flex justify-content-end pt-2">
+            <button class="btn btn-primary" id="next1">Next <span class="fas fa-arrow-right"></span> </button>
+        </div>
+    </div>
+    <div class="wrap" id="q2">
+        <div class="text-center pb-4">
+            <div class="h5 font-weight-bold"><span id="number"> </span>2 of 3</div>
+        </div>
+        <div class="h4 font-weight-bold">2. IPV4 stand's for?</div>
+        <div class="pt-4">
+            <form>
+                <label class="options">Internet Protocol <input type="radio" name="q2" value="Internet Protocol"> <span class="checkmark"></span> </label>
+                <label class="options">Intranet Protocol <input type="radio" name="q2" value="Intranet Protocol" checked> <span class="checkmark"></span> </label>
+                <label class="options">Internet Protocol Version 4 <input type="radio" name="q2" value="Internet Protocol Version 4"> <span class="checkmark"></span> </label>
+                <label class="options">None of the above <input type="radio" name="q2" value="None of the above"> <span class="checkmark"></span> </label>
+            </form>
+        </div>
+        <div class="d-flex justify-content-end pt-2">
+            <button class="btn btn-primary mx-3" id="back1"><span class="fas fa-arrow-left pr-1"></span>Previous </button>
+            <button class="btn btn-primary" id="next2">Next <span class="fas fa-arrow-right"></span> </button>
+        </div>
+    </div>
+    <div class="wrap" id="q3">
+        <div class="text-center pb-4">
+            <div class="h5 font-weight-bold"><span id="number"> </span>3 of 3</div>
+        </div>
+        <div class="h4 font-weight-bold">3. What is the full form of CSS?</div>
+        <div class="pt-4">
+            <form id="quiz-form">
+                <label class="options">Clarity Style Sheets <input type="radio" name="q3" value="Clarity Style Sheets"> <span class="checkmark"></span> </label>
+                <label class="options">Cascading Style Sheets <input type="radio" name="q3" value="Cascading Style Sheets"> <span class="checkmark"></span> </label>
+                <label class="options">Confirm Style sheets <input type="radio" name="q3" value="Confirm Style sheets" checked> <span class="checkmark"></span> </label>
+                <label class="options">Canvas Style Sheets <input type="radio" name="q3" value="Canvas Style Sheets"> <span class="checkmark"></span> </label>
+            </form>
+        </div>
+        <div class="d-flex justify-content-end pt-2">
+            <button class="btn btn-primary mx-3" id="back2"><span class="fas fa-arrow-left pr-2"></span>Previous </button>
+            <button class="btn btn-primary" id="submit">Submit </button>
+        </div>
+    </div>
+</div>
+<div class="d-flex flex-column align-items-center">
+    <div class="h3 font-weight-bold text-white">Go Dark</div>
+    <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+    </label>
+</div>
+
+@section Scripts {
+    <script>
+        var q1 = document.getElementById("q1");
+        var q2 = document.getElementById("q2");
+        var q3 = document.getElementById("q3");
+
+        var next1 = document.getElementById('next1');
+        var back1 = document.getElementById('back1');
+        var next2 = document.getElementById('next2');
+        var back2 = document.getElementById('back2');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let query = window.matchMedia("(max-width: 767px)");
+            if (query.matches) {
+                next1.onclick = function () {
+                    q1.style.left = "-650px";
+                    q2.style.left = "15px";
+                }
+                back1.onclick = function () {
+                    q1.style.left = "15px";
+                    q2.style.left = "650px";
+                }
+                back2.onclick = function () {
+                    q2.style.left = "15px";
+                    q3.style.left = "650px";
+                }
+                next2.onclick = function () {
+                    q2.style.left = "-650px";
+                    q3.style.left = "15px";
+                }
+            }
+            else {
+                next1.onclick = function () {
+                    q1.style.left = "-650px";
+                    q2.style.left = "50px";
+                }
+                back1.onclick = function () {
+                    q1.style.left = "50px";
+                    q2.style.left = "650px";
+                }
+                back2.onclick = function () {
+                    q2.style.left = "50px";
+                    q3.style.left = "650px";
+                }
+                next2.onclick = function () {
+                    q2.style.left = "-650px";
+                    q3.style.left = "50px";
+                }
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const main = document.querySelector('body');
+            const toggleSwitch = document.querySelector('.slider');
+
+            toggleSwitch.addEventListener('click', () => {
+                main.classList.toggle('dark-theme');
+            });
+        });
+
+        document.getElementById('submit').addEventListener('click', function (event) {
+            event.preventDefault();
+
+            var form = document.getElementById("quiz-form");
+            var formData = new FormData(form);
+            var result = '';
+            for (var pair of formData.entries()) {
+                result += pair[1] + "\n";
+            }
+            alert('You selected:\n' + result);
+        });
+    </script>
+}

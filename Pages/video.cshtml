@@ -1,0 +1,38 @@
+﻿@page
+@model DBproject.Pages.videoModel
+@{
+    Layout = "_Layout4";
+
+}
+<div class="card mt-4">
+    <div class="card-header">
+        <h2>اضافة الفيديو</h2>
+    </div>
+    <div class="card-body">
+        <div class="multimedia-container">
+            <form class="multimedia-form" method="post" asp-page-handler="AddMultimedia">
+                <div class="form-group">
+                    <label for="year">سنه الدراسه:</label>
+                    <select class="form-control" id="year" name="Year">
+                        <option value="1">سنه 1</option>
+                        <option value="2">سنه 2</option>
+                        <option value="3">سنه 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="title">عنوان</label>
+                    <input type="text" class="form-control" id="title" name="Title">
+                </div>
+                <div class="form-group">
+                    <label for="title">الفصل</label>
+                    <input type="text" class="form-control" id="title" name="Title">
+                </div>
+                <div class="form-group">
+                    <label for="multimedia">لينك الفيديو</label>
+                    <input type="url" class="form-control" id="multimedia" name="MultimediaLink">
+                </div>
+                <button type="submit" class="btn btn-primary upload-button">اضافه</button>
+            </form>
+        </div>
+    </div>
+</div>

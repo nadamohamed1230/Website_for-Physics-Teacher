@@ -1,0 +1,132 @@
+﻿@page
+@model DBproject.Pages.updateStModel
+@{
+    ViewData["Title"] = "Update Student";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #45a049;
+            }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>تحديث معلومات الطالب</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="fname">الاسم الأول</label>
+                <input type="text" id="fname" name="Student.FName" value="@Model.Student.FName" required />
+            </div>
+            <div class="form-group">
+                <label for="lname">اسم العائلة</label>
+                <input type="text" id="lname" name="Student.LName" value="@Model.Student.LName" required />
+            </div>
+            <div class="form-group">
+                <label for="phone">رقم الهاتف</label>
+                <input type="text" id="phone" name="Student.Phone" value="@Model.Student.Phone" required />
+            </div>
+            <div class="form-group">
+                <label for="mail">البريد الإلكتروني</label>
+                <input type="text" id="mail" name="Student.Mail" value="@Model.Student.Mail" required />
+            </div>
+            <div class="form-group">
+                <label for="ac_year">السنة الأكاديمية</label>
+                <input type="text" id="ac_year" name="Student.AcYear" value="@Model.Student.AcYear" required />
+            </div>
+            <div class="form-group">
+                <label for="pay_state">حالة الدفع</label>
+                <input type="text" id="pay_state" name="Student.PayState" value="@Model.Student.PayState" required />
+            </div>
+            <input type="hidden" name="Student.NId" value="@Model.Student.NId" />
+            <button type="submit">تحديث</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+       @*                  public void UpdateStudentInDatabase(Student student)
+        {
+            string query = "UPDATE Student SET Fname = @Fname, Lname = @Lname, pnum = @Phone, mail = @Mail, ac_year = @AcYear, pay_state = @PayState WHERE nID = @NID";
+
+            try
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@NID", student.NId);
+                    cmd.Parameters.AddWithValue("@Fname", student.FName);
+                    cmd.Parameters.AddWithValue("@Lname", student.LName);
+                    cmd.Parameters.AddWithValue("@Phone", student.Phone);
+                    cmd.Parameters.AddWithValue("@Mail", student.Mail);
+                    cmd.Parameters.AddWithValue("@AcYear", student.AcYear);
+                    cmd.Parameters.AddWithValue("@PayState", student.PayState);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+        } *@

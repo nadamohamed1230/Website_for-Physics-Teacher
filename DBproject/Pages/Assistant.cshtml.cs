@@ -1,6 +1,7 @@
+using DBproject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using Microsoft.AspNetCore.Http;
 namespace DBproject.Pages
 {
     public class AssistantModel : PageModel
@@ -41,27 +42,30 @@ namespace DBproject.Pages
         //    [BindProperty]
         //    public int NumQuestions { get; set; }
 
-        //    [BindProperty]
-        //    public string Year { get; set; }
-        //    [BindProperty]
-        //    public string Title { get; set; }
-        //    [BindProperty]
-        //    public string MultimediaLink { get; set; }
-
-        //    public List<Student> Students { get; set; } = new List<Student>
-        //{
-        //    new Student { NId = 1, Name = "íæÓÝ", Phone = "0123456789" },
-        //    new Student { NId = 2, Name = "ãÍãÏ", Phone = "01123456789" }
-        //};
+        [BindProperty]
+        public string Year { get; set; }
+        [BindProperty]
+        public string Title { get; set; }
+        [BindProperty]
+        public string MultimediaLink { get; set; }
+        public User CurrentUser { get; set; }
+        public List<Student> Students { get; set; } = new List<Student>
+    {
+        new Student { NId = 1, Name = "ï¿½ï¿½ï¿½ï¿½", Phone = "0123456789" },
+        new Student { NId = 2, Name = "ï¿½ï¿½ï¿½ï¿½", Phone = "01123456789" }
+    };
 
         //    public List<Payment> Payments { get; set; } = new List<Payment>
         //{
-        //    new Payment { Id = 1, StudentName = "íæÓÝ", NationalId = "621919561951", PaymentStatus = "Êã ÇáÏÝÚ" },
-        //    new Payment { Id = 2, StudentName = "ãÍãÏ", NationalId = "951919819819", PaymentStatus = "áã íÊã ÇáÏÝÚ" }
+        //    new Payment { Id = 1, StudentName = "ï¿½ï¿½ï¿½ï¿½", NationalId = "621919561951", PaymentStatus = "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" },
+        //    new Payment { Id = 2, StudentName = "ï¿½ï¿½ï¿½ï¿½", NationalId = "951919819819", PaymentStatus = "ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" }
         //};
 
         public void OnGet()
         {
+
+            CurrentUser = HttpContext.Session.GetObject<User>("CurrentUser");
+
         }
 
         public IActionResult OnPostAddQuestion()

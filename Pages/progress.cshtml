@@ -1,0 +1,107 @@
+﻿@page
+@model DBproject.Pages.progressModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_DashboardLayout";
+}
+
+<h2 class="header">Progress Report</h2>
+<div class="student-info">
+    <div class="info-item">
+        <label>Name:</label> <span>Nada Mohamed</span>
+    </div>
+    <div class="info-item">
+        <label>Student ID:</label> <span>123456</span>
+    </div>
+    <div class="info-item">
+        <label>Academic Year:</label> <span>Year 2</span>87888
+    </div>
+</div>
+<canvas id="quizChart"></canvas>
+
+<!-- Colorful Table -->
+<table>
+    <tr>
+        <th class="number">#</th>
+        <th class="grade">Grade</th>
+        <th class="topic">Topic</th>
+        <th class="questions">Number of Questions</th>
+        <th class="date">Date</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>60</td>
+        <td>physics</td>
+        <td>20</td>
+        <td>2024-05-06</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>80</td>
+        <td>physics</td>
+        <td>20</td>
+        <td>2024-05-06</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>40</td>
+        <td>physics</td>
+        <td>20</td>
+        <td>2024-05-06</td>
+    </tr>
+    <tr >
+        <td>4</td>
+        <td>90</td>
+        <td>physics</td>
+        <td>20</td>
+        <td>2024-05-06</td>
+    </tr>
+    <!-- Add more rows as needed -->
+</table>
+<!-- End Colorful Table -->
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample data for the bar chart
+        var quizData = {
+            labels: ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4"],
+            datasets: [{
+                label: 'Quiz Grades',
+                data: [60, 80, 40, 90],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(54, 162, 235, 0.5)',
+                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(75, 192, 192, 0.5)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // Get the canvas element
+        var ctx = document.getElementById('quizChart').getContext('2d');
+
+        // Create the bar chart
+        var quizChart = new Chart(ctx, {
+            type: 'bar',
+            data: quizData,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+}
+

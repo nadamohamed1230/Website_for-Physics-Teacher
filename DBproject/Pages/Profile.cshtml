@@ -1,0 +1,32 @@
+﻿@page
+@model DBproject.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "_Layout3";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Welcome to Your Profile, @Model.CurrentUser.FirstName</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Academic Year:</strong> @Model.CurrentUser.AcademicYear</p>
+                    <p><strong>Payment Status:</strong> @Model.CurrentUser.PayState</p>
+                    <p><strong>Email:</strong> @Model.CurrentUser.Email</p>
+
+                    <h3>Change Password</h3>
+                    <form method="post" asp-page-handler="ChangePassword">
+                        <div class="form-group">
+                            <label for="newPassword">New Password:</label>
+                            <input type="password" id="newPassword" name="NewPassword" class="form-control" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
