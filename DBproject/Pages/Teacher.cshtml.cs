@@ -20,14 +20,14 @@ namespace DBproject.Pages
         [BindProperty]
         public string CorrectAnswer { get; set; }*/
 
-        [BindProperty]
+/*        [BindProperty]
         public string Hardness { get; set; }
         [BindProperty]
         public string Topic { get; set; }
         [BindProperty]
         public int StudyLevel { get; set; }
         [BindProperty]
-        public int NumQuestions { get; set; }
+        public int NumQuestions { get; set; }*/
 
         [BindProperty]
         public string Year { get; set; }
@@ -106,7 +106,7 @@ namespace DBproject.Pages
             // Generate quiz based on provided data
             // ...
 
-            return RedirectToPage();
+            return RedirectToPage("/Randomquizform");
         }
 
         public IActionResult OnPostAddMultimedia()

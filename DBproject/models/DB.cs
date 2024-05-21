@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Numerics;
 
@@ -35,6 +36,74 @@ namespace DBproject.models
             }
 
         }
+
+        public void addquiz( int id,long t_id, string tobic, int quecount, int ac_year, int level)
+        {
+            string query = "insert into Quizzes (Quiz_id,T_ID,tobic,quecount,ac_year,hardnesslevel)values(" + id + "," + t_id + "," + "'" + tobic + "'" + "," + quecount + "," + ac_year + "," + level + ")";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public int idquiz()
+        {
+            int id = new int();
+            string query = "select max(Quiz_id) from Quizzes ";
+            try
+            {
+             
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                 id=(int) cmd.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return id;
+
+        }
+
+        public void quizQuestion(int count,int Quiz_id,int ac_year,int hard)
+        {
+            string query =" INSERT INTO QuizcontainQuestions(Q_ID, Quiz_id) SELECT top "+ count+"(Q_ID),"+ Quiz_id + "FROM( SELECT Q_ID, ROW_NUMBER()" +
+                " OVER(ORDER BY Q_ID) AS row_num FROM Questions WHERE AC_year =" + ac_year + " AND level_ = " + hard + ") AS sub";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
 
     }
 }

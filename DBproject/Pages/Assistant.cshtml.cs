@@ -59,7 +59,7 @@ namespace DBproject.Pages
         public IActionResult OnPostGenerateQuiz()
         {
             // Generate quiz logic
-            return RedirectToPage();
+            return RedirectToPage("/Randomquizform");
         }
 
         public IActionResult OnPostAddMultimedia()
