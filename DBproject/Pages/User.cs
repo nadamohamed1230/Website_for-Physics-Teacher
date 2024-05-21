@@ -22,3 +22,4 @@ namespace DBproject.Models
         public string? TnID { get; set; } = "27805190300771";
     }
 }
+
