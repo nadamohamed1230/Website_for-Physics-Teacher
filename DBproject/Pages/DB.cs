@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Data;
 
 namespace DBproject.Pages
 {
@@ -838,6 +839,34 @@ namespace DBproject.Pages
             }
 
             return student;
+        }
+        public DataTable GetQuizGrades(long id)
+        {
+            DataTable grades = new DataTable();
+            string query = "SELECT Quizzes.tobic, QuizzStudent.grade, Quizzes.quecount " +
+                           "FROM QuizzStudent " +
+                           "JOIN Quizzes ON QuizzStudent.Q_ID = Quizzes.Quiz_id " +
+                           "WHERE snid = @ID";
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                {
+                    con.Open();
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ID", id);
+                        grades.Load(cmd.ExecuteReader());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                // You might want to handle or log the exception more appropriately
+            }
+
+            return grades;
         }
 
         public void DeleteStudent(string nid)
