@@ -4,7 +4,6 @@
     ViewData["Title"] = "Home page";
     Layout = "_Layout2";
 }
-@Model.Msg
 <main class="login-body" data-vide-bg="~/assets/img/hero/h1_hero.png">
     <form class="form-default" method="post">
         <div class="login-form">
@@ -12,9 +11,15 @@
                 <a asp-page="/Index"><img src="~/assets/img/logo/logo.png" alt=""></a>
             </div>
             <h2>تسجيل </h2>
+            @if (!string.IsNullOrEmpty(Model.Msg))
+            {
+                <div class="alert alert-danger">
+                    @Model.Msg
+                </div>
+            }
             <div class="form-input">
                 <label for="ID">الرقم التعريفيى </label>
-                <input type="number" id="ID" name="ID" placeholder="ID" asp-for="@Model.ID">
+                <input type="number" id="ID" name="ID" maxlength="14" minlength="14" placeholder="ID" asp-for="@Model.ID">
             </div>
             <div class="form-input">
                 <label for="Password">الرقم السرى</label>
@@ -31,9 +36,6 @@
             </div>
             <div class="form-input pt-30">
                 <input type="submit" name="submit" value="login">
-            </div>
-            <a href="#" class="forget">نسيت الباسورد</a>
-            <a asp-page="/Register" class="registration">انشاء حساب</a>
-        </div>
+          
     </form>
 </main>

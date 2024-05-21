@@ -3,9 +3,9 @@ using DBproject.Pages;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+
 namespace DBproject.Pages
 {
-
     public class LoginModel : PageModel
     {
         private readonly DB _db;
@@ -18,33 +18,23 @@ namespace DBproject.Pages
 
         [BindProperty]
         public string Role { get; set; }
-        public string Msg;
+
+        public string Msg { get; set; } // Changed from field to property
+
         public LoginModel(DB db)
         {
             _db = db;
         }
-
-        //public async Task<IActionResult> OnPostLoginAsync()
-        //{
-        //    var user = await _db.GetUserByUsernameAndPasswordAsync(ID, Password);
-        //    if (user != null)
-        //    {
-        //        HttpContext.Session.SetObject("CurrentUser", user);
-        //        return RedirectToPage("/Profile");
-        //    }
-
-        //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-        //    return Page();
-        //}
 
         public async Task<IActionResult> OnPostAsync()
         {
             var user = await _db.ValidateUserAsync(ID, Password, Role);
             if (user == null)
             {
-                Msg = "Invalid login attempt";
+                Msg = "Invalid login attempt. Please check your ID, password, and role.";
                 return Page();
             }
+
             HttpContext.Session.SetObject("CurrentUser", user);
             return RedirectToCorrectPage(user);
         }
