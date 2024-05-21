@@ -37,7 +37,7 @@ namespace DBproject.Pages
                 try
                 {
                     db.AddPdf(MultimediaLink, Year, Chapter, Title , 27805190300771);
-                    return RedirectToPage("Teacher"); 
+                    return RedirectToPage("/Teacher"); 
                 }
                 catch (Exception ex)
                 {
