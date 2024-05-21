@@ -20,6 +20,9 @@
             background-color: #f4f4f4;
         }
 
+        .mt-6 {
+            margin-top: 60px;
+        }
         .quiz-form {
             max-width: 400px;
             margin: 50px auto;
@@ -29,10 +32,10 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .quiz-form h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+            .quiz-form h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
 
         .form-group {
             margin-bottom: 20px;
@@ -64,9 +67,9 @@
             cursor: pointer;
         }
 
-        button:hover {
-            background-color: #45a049;
-        }
+            button:hover {
+                background-color: #45a049;
+            }
 
         .container {
             max-width: 800px;
@@ -82,284 +85,107 @@
             margin: 0 auto;
         }
 
-        .multimedia-container h2 {
-            margin-bottom: 20px;
-        }
+            .multimedia-container h2 {
+                margin-bottom: 20px;
+            }
 
         .multimedia-form {
             margin-top: 20px;
         }
 
-        .multimedia-form label {
-            font-weight: bold;
-        }
+            .multimedia-form label {
+                font-weight: bold;
+            }
 
-        .multimedia-form input[type="text"],
-        .multimedia-form select {
-            margin-top: 5px;
-        }
+            .multimedia-form input[type="text"],
+            .multimedia-form select {
+                margin-top: 5px;
+            }
 
         .upload-button {
             margin-top: 20px;
         }
     </style>
 </head>
-<body>
-    
-
-    <div class="container mt-5">
-        <!-- Add Question Form -->
-        <div class="card mt-4">
-            <div class="card-header">اضف السؤال الي بنك الاسئله</div>
-            <div class="card-body">
-                <div class="container">
-                    <div class="question-form">
-                        <form method="post" asp-page-handler="AddQuestion">
-                            <div class="form-group">
-                                <label for="question">السؤال</label>
-                                <textarea class="form-control" id="question" name="Question" rows="3"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="answer1">الاجابه الاولي</label>
-                                <input type="text" class="form-control" id="answer1" name="Answer1">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer2">الاجابه الثانيه:</label>
-                                <input type="text" class="form-control" id="answer2" name="Answer2">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer3">الاجابه الثالثه</label>
-                                <input type="text" class="form-control" id="answer3" name="Answer3">
-                            </div>
-                            <div class="form-group">
-                                <label for="answer4">الاجابه الرابعه</label>
-                                <input type="text" class="form-control" id="answer4" name="Answer4">
-                            </div>
-                            <div class="form-group">
-                                <label for="correct-answer">الاجابه الصحيحه</label>
-                                <select class="form-control" id="correct-answer" name="CorrectAnswer">
-                                    <option value="Answer1">الاجابه الاولي</option>
-                                    <option value="Answer2">الاجابه الثانيه</option>
-                                    <option value="Answer3">الاجابه الثالثه</option>
-                                    <option value="Answer4">الاجابه الرابعه</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">اضف السؤال</button>
+<body class="text-right">
+    <div class="contanir mt-180">
+        <div class="container mt-5">
+            <!-- Add Question Form -->
+            <div class="card mt-4">
+                <div class="card-header">اضف السؤال الي بنك الاسئله</div>
+                <div class="card-body">
+                    <div class="container">
+                        <form method="post">
+                            <button class="btn btn-lg btn-block" asp-page-handler="AddQuestion">اضافه سؤال</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Quiz Form -->
-        <div class="quiz-form">
-            <h2>مُنشئ الاختبارات</h2>
-            <form method="post" asp-page-handler="GenerateQuiz">
-                <div class="form-group">
-                    <label for="hardness">مستوى الصعوبة:</label>
-                    <select name="Hardness" id="hardness">
-                        <option value="سهل">سهل</option>
-                        <option value="متوسط">متوسط</option>
-                        <option value="صعب">صعب</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="topic">الموضوع:</label>
-                    <input type="text" id="topic" name="Topic">
-                </div>
-                <div class="form-group">
-                    <label for="study-level">مستوى الدراسة:</label>
-                    <input type="number" id="study-level" name="StudyLevel" min="1" max="3">
-                </div>
-                <div class="form-group">
-                    <label for="num-questions">عدد الأسئلة:</label>
-                    <input type="number" id="num-questions" name="NumQuestions" min="1">
-                </div>
-                <button type="submit">إنشاء الاختبار</button>
-            </form>
-        </div>
 
-        <!-- Add Multimedia Form -->
+            <!-- Quiz Form -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="container">مُنشئ الاختبارات</div>
+                    <div class="card-body">
+                        <div class="container">
+                            <form method="post" asp-page-handler="GenerateQuiz">
+                                <button class="btn btn-secondary btn-lg btn-block" type="submit">إنشاء اختبار</button>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+        <!-- Link to Videos Page -->
         <div class="card mt-4">
-            <div class="card-header">
-                <h2>اضافة الفيديو</h2>
-            </div>
+            <div class="card-header">محاضرات</div>
             <div class="card-body">
-                <div class="multimedia-container">
-                    <form class="multimedia-form" method="post" asp-page-handler="AddMultimedia">
-                        <div class="form-group">
-                            <label for="year">سنه الدراسه:</label>
-                            <select class="form-control" id="year" name="Year">
-                                <option value="1">سنه 1</option>
-                                <option value="2">سنه 2</option>
-                                <option value="3">سنه 3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">عنوان</label>
-                            <input type="text" class="form-control" id="title" name="Title">
-                        </div>
-                        <div class="form-group">
-                        <label for="title">الفصل</label>
-                        <input type="text" class="form-control" id="title" name="Title">
-                        </div>
-                        <div class="form-group">
-                            <label for="multimedia">لينك الفيديو</label>
-                            <input type="url" class="form-control" id="multimedia" name="MultimediaLink">
-                        </div>
-                        <button type="submit" class="btn btn-primary upload-button">اضافه</button>
+                <div class="container">
+                    <form method="get" action="/video">
+                        <button class="btn btn-lg btn-block btn-primary">اضافة فيديو</button>
                     </form>
                 </div>
             </div>
         </div>
+        <!-- Link to PDF Page -->
         <div class="card mt-4">
-            <div class="card-header">
-                <h2>اضافه PDF  </h2>    
-            </div>
+            <div class="card-header">PDFs</div>
             <div class="card-body">
-                <div class="multimedia-container">
-                    <form class="multimedia-form" method="post" asp-page-handler="AddMultimedia">
-                        <div class="form-group">
-                            <label for="year">سنه الدراسه:</label>
-                            <select class="form-control" id="year" name="Year">
-                                <option value="1">سنه 1</option>
-                                <option value="2">سنه 2</option>
-                                <option value="3">سنه 3</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">عنوان</label>
-                            <input type="text" class="form-control" id="title" name="Title">
-                        </div>
-                        <div class="form-group">
-                            <label for="title">الفصل</label>
-                            <input type="text" class="form-control" id="title" name="Title">
-                        </div>
-                        <div class="form-group">
-                            <label for="multimedia">لينك ال pdf</label>
-                            <input type="url" class="form-control" id="multimedia" name="MultimediaLink">
-                        </div>
-                        <button type="submit" class="btn btn-primary upload-button">اضافه</button>
+                <div class="container">
+                    <form method="get" action="/PDF">
+                        <button class="btn btn-lg btn-block btn-primary">اضافه PDF</button>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- Students Table -->
+        <!-- Link to TA Page -->
+        <div class="card mt-4">
+            <div class="card-header">المساعدين</div>
+            <div class="card-body">
+                <div class="container">
+                    <form method="get" action="/TA">
+                        <button class="btn btn-lg btn-block btn-primary">عرض المساعدين</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Link to Students Page -->
         <div class="card mt-4">
             <div class="card-header">الطلاب</div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">الرقم التعريفى</th>
-                            <th scope="col">الاسم</th>
-                            <th scope="col">رقم الهاتف</th>
-                            <th scope="col">حذف</th>
-                            <th scope="col">تحديث</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var student in Model.Students)
-                        {
-                            <tr>
-                                <th scope="row">@student.NId</th>
-                                <td>@student.Name</td>
-                                <td>@student.Phone</td>
-                                <td>
-                                    <form method="post" asp-page-handler="DeleteStudent">
-                                        <input type="hidden" name="Id" value="@student.NId" />
-                                        <button type="submit" class="btn btn-danger">حذف</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <a href="/updateS?id=@student.NId" class="btn btn-warning">تحديث</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--  TAs Table -->
-        <div class="card mt-5">
-            <div class="card-header">المساعدين </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">الرقم التعريفى</th>
-                            <th scope="col">الاسم</th>
-                            <th scope="col">رقم الهاتف</th>
-                            <th scope="col">حذف</th>
-                            <th scope="col">تحديث</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var TA in Model.TAs)
-                        {
-                            <tr>
-                                <th scope="row">@TA.NID</th>
-                                <td>@TA.Name</td>
-                                <td>@TA.Phone</td>
-                                <td>
-                                    <form method="post" asp-page-handler="DeleteStudent">
-                                        <input type="hidden" name="Id" value="@TA.NID" />
-                                        <button type="submit" class="btn btn-danger">حذف</button>
-                                    </form>
-                                </td>
-                                <td>
-                                    <a href="/updateS?id=@TA.NID" class="btn btn-warning">تحديث</a>
-                                </td>
-                            
-                            </tr>
-                        }
-                        <tr>
-                            <td colspan="5" class="text-center">
-                                <button class="btn btn-primary">إضافة</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- Confirmation Section -->
-        <div class="card mt-4">
-            <div class="card-header">تاكيد الدفع</div>
-            <div class="card-body">
-                <div class="confirmation-table">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">اسم الطالب</th>
-                                <th scope="col">الرقم القومي</th>
-                                <th scope="col">حالة الدفع</th>
-                                <th scope="col">التفعيل</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var payment in Model.Payments)
-                            {
-                                <tr>
-                                    <td>@payment.StudentName</td>
-                                    <td>@payment.NationalId</td>
-                                    <td>@payment.PaymentStatus</td>
-                                    <td>
-                                        <form method="post" asp-page-handler="ConfirmPayment">
-                                            <input type="hidden" name="Id" value="@payment.Id" />
-                                            <button type="submit" class="btn btn-success">تفعيل الاشتراك</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div class="container">
+                    <form method="get" action="/Students">
+                        <button class="btn btn-lg btn-block btn-primary">عرض الطلاب</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ... existing code ... -->
-
-   
+    </div>
 </body>
 </html>

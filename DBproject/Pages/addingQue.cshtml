@@ -1,0 +1,88 @@
+﻿@page
+@model DBproject.Pages.addingQueModel
+@{
+    Layout = "_Layout4";
+}
+<div class="card mt-4">
+    <div class="card-header">اضف السؤال الي بنك الاسئله</div>
+    <div class="card-body">
+        <div class="container">
+            <div class="text-right">
+                <a type="button" class="btn btn-lg btn-block" href="/addingQue">اضافه سؤال</a>
+                <div class="question-form">
+                    <form method="post" asp-page-handler="AddQuestion">
+                        <div class="form-group">
+                            <label for="question">اسم الباب</label>
+                            <input type="text" class="form-control" asp-for="@Model.chapter" id="chapter" name="chapter">
+                            <span asp-validation-for="@Model.chapter" class="text-danger"></span>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="question">السؤال</label>
+                            <textarea class="form-control" asp-for="@Model.Question" id="question" name="Question" rows="3"></textarea>
+                            <span asp-validation-for="@Model.Question" class="text-danger"></span>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer1">الاجابه الاولي</label>
+                            <input type="text" class="form-control" asp-for="@Model.Answer1" id="answer1" name="Answer1">
+                            <span asp-validation-for="@Model.Answer1" class="text-danger"></span>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer2">الاجابه الثانيه:</label>
+                            <input type="text" class="form-control" asp-for="@Model.Answer2" id="answer2" name="Answer2">
+                            <span asp-validation-for="@Model.Answer2" class="text-danger"></span>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer3">الاجابه الثالثه</label>
+                            <input type="text" class="form-control" asp-for="@Model.Answer3" id="answer3" name="Answer3">
+                            <span asp-validation-for="@Model.Answer3" class="text-danger"></span>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer4">الاجابه الرابعه</label>
+                            <input type="text" class="form-control" asp-for="@Model.Answer4" id="answer4" name="Answer4">
+                            <span asp-validation-for="@Model.Answer4" class="text-danger"></span>
+                            <br>
+                        </div>
+                        <div class="form-group">
+                            <label for="correct-answer">الاجابه الصحيحه</label>
+                            <select class="form-control" asp-for="CorrectAnswer" id="correct-answer" name="CorrectAnswer">
+                                <option value="answer1">الاجابه الاولي</option>
+                                <option value="answer2">الاجابه الثانيه</option>
+                                <option value="answer3">الاجابه الثالثه</option>
+                                <option value="answer4">الاجابه الرابعه</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="correct-answer">السنه الدراسيه</label>
+                            <select class="form-control" asp-for="ac_year" id="ac-yr" name="ac_year">
+                                <option value=1> الاولي</option>
+                                <option value=2>الثانيه</option>
+                                <option value=3> الثالثه</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="correct-answer">مستوي الصعوبة</label>
+                            <select class="form-control" asp-for="Hardness" id="hard" name="Hardness">
+                                <option value=1> الاولي</option>
+                                <option value=2>الثاني</option>
+                                <option value=3> الثالث</option>
+
+                            </select>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-success btn-block">اضف السؤال</button>
+                    </form>
+
+                </div>
+         
+            </div>
+        </div>
+</div>

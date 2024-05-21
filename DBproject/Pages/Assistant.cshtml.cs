@@ -6,27 +6,41 @@ namespace DBproject.Pages
 {
     public class AssistantModel : PageModel
     {
-        [BindProperty]
-        public string Question { get; set; }
-        [BindProperty]
-        public string Answer1 { get; set; }
-        [BindProperty]
-        public string Answer2 { get; set; }
-        [BindProperty]
-        public string Answer3 { get; set; }
-        [BindProperty]
-        public string Answer4 { get; set; }
-        [BindProperty]
-        public string CorrectAnswer { get; set; }
+        /*        [BindProperty]
+                public string Question { get; set; }
+                [BindProperty]
+                public string Answer1 { get; set; }
+                [BindProperty]
+                public string Answer2 { get; set; }
+                [BindProperty]
+                public string Answer3 { get; set; }
+                [BindProperty]
+                public string Answer4 { get; set; }
+                [BindProperty]
+                public string CorrectAnswer { get; set; }*/
+        //public class AssistantModel : PageModel
+        //{
+        //    [BindProperty]
+        //    public string Question { get; set; }
+        //    [BindProperty]
+        //    public string Answer1 { get; set; }
+        //    [BindProperty]
+        //    public string Answer2 { get; set; }
+        //    [BindProperty]
+        //    public string Answer3 { get; set; }
+        //    [BindProperty]
+        //    public string Answer4 { get; set; }
+        //    [BindProperty]
+        //    public string CorrectAnswer { get; set; }
 
-        [BindProperty]
-        public string Hardness { get; set; }
-        [BindProperty]
-        public string Topic { get; set; }
-        [BindProperty]
-        public int StudyLevel { get; set; }
-        [BindProperty]
-        public int NumQuestions { get; set; }
+        //    [BindProperty]
+        //    public string Hardness { get; set; }
+        //    [BindProperty]
+        //    public string Topic { get; set; }
+        //    [BindProperty]
+        //    public int StudyLevel { get; set; }
+        //    [BindProperty]
+        //    public int NumQuestions { get; set; }
 
         [BindProperty]
         public string Year { get; set; }
@@ -37,15 +51,15 @@ namespace DBproject.Pages
         public User CurrentUser { get; set; }
         public List<Student> Students { get; set; } = new List<Student>
     {
-        new Student { NId = 1, Name = "íæÓÝ", Phone = "0123456789" },
-        new Student { NId = 2, Name = "ãÍãÏ", Phone = "01123456789" }
+        new Student { NId = 1, Name = "ï¿½ï¿½ï¿½ï¿½", Phone = "0123456789" },
+        new Student { NId = 2, Name = "ï¿½ï¿½ï¿½ï¿½", Phone = "01123456789" }
     };
 
-        public List<Payment> Payments { get; set; } = new List<Payment>
-    {
-        new Payment { Id = 1, StudentName = "íæÓÝ", NationalId = "621919561951", PaymentStatus = "Êã ÇáÏÝÚ" },
-        new Payment { Id = 2, StudentName = "ãÍãÏ", NationalId = "951919819819", PaymentStatus = "áã íÊã ÇáÏÝÚ" }
-    };
+        //    public List<Payment> Payments { get; set; } = new List<Payment>
+        //{
+        //    new Payment { Id = 1, StudentName = "ï¿½ï¿½ï¿½ï¿½", NationalId = "621919561951", PaymentStatus = "ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" },
+        //    new Payment { Id = 2, StudentName = "ï¿½ï¿½ï¿½ï¿½", NationalId = "951919819819", PaymentStatus = "ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½" }
+        //};
 
         public void OnGet()
         {
@@ -57,13 +71,12 @@ namespace DBproject.Pages
         public IActionResult OnPostAddQuestion()
         {
             // Add question logic
-            return RedirectToPage();
+            return RedirectToPage("/addingQue");
         }
-
         public IActionResult OnPostGenerateQuiz()
         {
             // Generate quiz logic
-            return RedirectToPage();
+            return RedirectToPage("/Randomquizform");
         }
 
         public IActionResult OnPostAddMultimedia()
@@ -72,24 +85,24 @@ namespace DBproject.Pages
             return RedirectToPage();
         }
 
-        public IActionResult OnPostDeleteStudent(int id)
-        {
-            // Delete student logic
-            return RedirectToPage();
-        }
+        //    public IActionResult OnPostDeleteStudent(int id)
+        //    {
+        //        // Delete student logic
+        //        return RedirectToPage();
+        //    }
 
-        public IActionResult OnPostUpdateStudent(int id)
-        {
-            // Update student logic
-            return RedirectToPage();
-        }
+        //    public IActionResult OnPostUpdateStudent(int id)
+        //    {
+        //        // Update student logic
+        //        return RedirectToPage();
+        //    }
 
-        public IActionResult OnPostConfirmPayment(int id)
-        {
-            // Confirm payment logic
-            return RedirectToPage();
-        }
+        //    public IActionResult OnPostConfirmPayment(int id)
+        //    {
+        //        // Confirm payment logic
+        //        return RedirectToPage();
+        //    }
+        //}
     }
-
 }
 
