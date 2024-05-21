@@ -7,7 +7,7 @@ namespace DBproject.Pages
 {
     public class ParentsModel : PageModel
     {
-        public User CurrentUser { get; set; }
+                      public User CurrentUser { get; set; }
 
         public void OnGet()
         {
