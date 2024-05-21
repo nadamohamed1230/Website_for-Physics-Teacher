@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection.Emit;
 using System.Security.Cryptography;
 
 namespace DBproject.models
@@ -268,7 +269,7 @@ namespace DBproject.models
 
         }
 
-        public void addquiz( int id,long t_id, string tobic, int quecount, int ac_year, int level)
+        public void addquiz(int id, long t_id, string tobic, int quecount, int ac_year, int level)
         {
             string query = "insert into Quizzes (Quiz_id,T_ID,tobic,quecount,ac_year,hardnesslevel)values(" + id + "," + t_id + "," + "'" + tobic + "'" + "," + quecount + "," + ac_year + "," + level + ")";
             try
@@ -295,10 +296,10 @@ namespace DBproject.models
             string query = "select max(Quiz_id) from Quizzes ";
             try
             {
-             
+
                 con.Open();
                 SqlCommand cmd = new SqlCommand(query, con);
-                 id=(int) cmd.ExecuteScalar();
+                id = (int)cmd.ExecuteScalar();
 
             }
             catch (Exception ex)
@@ -313,9 +314,9 @@ namespace DBproject.models
 
         }
 
-        public void quizQuestion(int count,int Quiz_id,int ac_year,int hard)
+        public void quizQuestion(int count, int Quiz_id, int ac_year, int hard)
         {
-            string query =" INSERT INTO QuizcontainQuestions(Q_ID, Quiz_id) SELECT top "+ count+"(Q_ID),"+ Quiz_id + "FROM( SELECT Q_ID, ROW_NUMBER()" +
+            string query = " INSERT INTO QuizcontainQuestions(Q_ID, Quiz_id) SELECT top " + count + "(Q_ID)," + Quiz_id + "FROM( SELECT Q_ID, ROW_NUMBER()" +
                 " OVER(ORDER BY Q_ID) AS row_num FROM Questions WHERE AC_year =" + ac_year + " AND level_ = " + hard + ") AS sub";
             try
             {
@@ -397,8 +398,131 @@ namespace DBproject.models
                 con.Close();
             }
         }
+        //public void AddPdf(string pdfUrl, int acYear, string chapter, string title, long tId)
+        //{
+        //    string multimediaQuery = "INSERT INTO MultiMedia (ac_year, Chapter, title, T_ID) OUTPUT INSERTED.M_ID VALUES (@AcYear, @Chapter, @Title, @TId)";
+        //    string pdfQuery = "INSERT INTO PDFs (pdf_url, M_ID) VALUES (@PdfUrl, @MId)";
+
+        //    try
+        //    {
+
+        //        con.Open();
+
+        //        int insertedId;
+        //        using (SqlCommand cmd = new SqlCommand(multimediaQuery, con))
+        //        {
+        //            cmd.Parameters.AddWithValue("@AcYear", acYear);
+        //            cmd.Parameters.AddWithValue("@Chapter", chapter);
+        //            cmd.Parameters.AddWithValue("@Title", title);
+        //            cmd.Parameters.AddWithValue("@TId", tId);
+
+        //            insertedId = (int)cmd.ExecuteScalar();
+        //        }
+
+        //        Only execute the PDF insert if the multimedia insert was successful
+        //            if (insertedId > 0)
+        //        {
+        //            using (SqlCommand pdfCmd = new SqlCommand(pdfQuery, con))
+        //            {
+        //                pdfCmd.Parameters.AddWithValue("@PdfUrl", pdfUrl);
+        //                pdfCmd.Parameters.AddWithValue("@MId", insertedId);
+        //                pdfCmd.ExecuteNonQuery();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            throw new Exception("Failed to insert multimedia record.");
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine("Error: " + ex.Message);
+        //        throw;
+        //    }
+        //}
+        public int InsertMultimediaRecord(int acYear, string chapter, string title, long tId)
+        {
+            string s = "Data Source=SQL6032.site4now.net; Initial Catalog=db_aa83e2_nadamohamed123001;User ID=db_aa83e2_nadamohamed123001_admin;Password=_123456_789_NDAY";
+
+            string multimediaQuery = "INSERT INTO MultiMedia (ac_year, Chapter, title, T_ID) OUTPUT INSERTED.M_ID VALUES (@AcYear, @Chapter, @Title, @TId)";
+            int insertedId;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(s))
+                {
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(multimediaQuery, con))
+                    {
+                        cmd.Parameters.AddWithValue("@AcYear", acYear);
+                        cmd.Parameters.AddWithValue("@Chapter", chapter);
+                        cmd.Parameters.AddWithValue("@Title", title);
+                        cmd.Parameters.AddWithValue("@TId", tId);
+
+                         insertedId = (int)cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error inserting multimedia record: " + ex.Message);
+                throw;
+            }
+            return insertedId;
+
+        }
+
+        public void InsertPdfRecord(string pdfUrl, int multimediaId)
+        {
+            string pdfQuery = "INSERT INTO PDFs (pdf_url, M_ID) VALUES (@PdfUrl, @MultimediaId)";
+
+            try
+            {
+                
+                    con.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(pdfQuery, con))
+                    {
+                        cmd.Parameters.AddWithValue("@PdfUrl", pdfUrl);
+                        cmd.Parameters.AddWithValue("@MultimediaId", multimediaId);
+                        cmd.ExecuteNonQuery();
+                    }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error inserting PDF record: " + ex.Message);
+                throw;
+            }
+        }
+        public void AddPdf(string pdfUrl, int acYear, string chapter, string title, long tId)
+        {
+            try
+            {
+                int multimediaId = InsertMultimediaRecord(acYear, chapter, title, tId);
+                if (multimediaId > 0)
+                {
+                    InsertPdfRecord(pdfUrl, multimediaId);
+                }
+                else
+                {
+                    throw new Exception("Failed to insert multimedia record.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error adding PDF: " + ex.Message);
+                throw;
+            }
+        }
+
+
+
     }
+
 }
+
 
     public class Student
     {
