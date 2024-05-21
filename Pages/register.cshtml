@@ -1,0 +1,73 @@
+﻿@page
+@model DBproject.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Register";
+    Layout = "_Layout2";
+}
+
+<main class="login-body" data-vide-bg="~/assets/img/hero/h1_hero.png">
+    <form class="form-default" method="post">
+        <div class="login-form">
+            <div class="logo-login">
+                <a href="index.html"><img src="~/assets/img/logo/logo.png" alt=""></a>
+            </div>
+            <h2>انشاء حساب</h2>
+
+            <!-- First Name -->
+            <div class="form-input">
+                <label for="first_name">الاسم</label>
+                <input type="text" id="first_name" placeholder="First Name" asp-for="NewUser.FirstName" required>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-input">
+                <label for="last_name">اسم العائلة</label>
+                <input type="text" id="last_name" placeholder="Last Name" asp-for="NewUser.LastName" required>
+            </div>
+
+            <!-- National ID -->
+            <div class="form-input">
+                <label for="national_id">الرقم القومي</label>
+                <input type="biginteger" id="national_id" placeholder="National ID" asp-for="NewUser.ID" pattern="[0-9]{14}" title="National ID must be exactly 14 digits" required>
+                <small class="form-text text-muted">Please enter your 14-digit National ID.</small>
+            </div>
+
+            <!-- Email -->
+            <div class="form-input">
+                <label for="email">البريد الالكتروني</label>
+                <input type="email" id="email" placeholder="Email Address" asp-for="NewUser.Email" required>
+            </div>
+
+            <!-- Parent's Number -->
+            <div class="form-input">
+                <label for="parent_number">رقم ولي الأمر</label>
+                <input type="text" id="parent_number" placeholder="Parent's Number" asp-for="NewUser.ParentNumber" required>
+            </div>
+
+            <!-- Academic Year Dropdown -->
+            <div class="form-input">
+                <label for="academic_year">السنة الدراسية</label><br>
+                <select id="academic_year" asp-for="NewUser.AcademicYear" required>
+                    <option value="">اختر</option>
+                    <option value="1">سنة أولى</option>
+                    <option value="2">سنة ثانية</option>
+                    <option value="3">سنة ثالثة</option>
+                </select>
+            </div>
+
+            <!-- Password -->
+            <div class="form-input">
+                <label for="password">الرقم السري</label>
+                <input type="password" id="password" placeholder="Password" asp-for="NewUser.Password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-input pt-30">
+                <button type="submit">Register</button>
+            </div>
+
+            <!-- Login Link -->
+            <a href="login" class="registration">لديك حساب بالفعل؟ سجل الدخول</a>
+        </div>
+    </form>
+</main>

@@ -1,0 +1,39 @@
+﻿@page
+@model DBproject.Pages.LoginModel
+@{
+    ViewData["Title"] = "Home page";
+    Layout = "_Layout2";
+}
+@Model.Msg
+<main class="login-body" data-vide-bg="~/assets/img/hero/h1_hero.png">
+    <form class="form-default" method="post">
+        <div class="login-form">
+            <div class="logo-login">
+                <a asp-page="/Index"><img src="~/assets/img/logo/logo.png" alt=""></a>
+            </div>
+            <h2>تسجيل </h2>
+            <div class="form-input">
+                <label for="ID">الرقم التعريفيى </label>
+                <input type="number" id="ID" name="ID" placeholder="ID" asp-for="@Model.ID">
+            </div>
+            <div class="form-input">
+                <label for="Password">الرقم السرى</label>
+                <input type="password" id="Password" name="Password" placeholder="Password" asp-for="@Model.Password">
+            </div>
+            <div class="form-input">
+                <label for="Role">نوع الحساب</label><br>
+                <select id="Role" name="Role" asp-for="Role">
+                    <option value="student"> طالب</option>
+                    <option value="assistant">مساعد</option>
+                    <option value="parent">ولى امر</option>
+                    <option value="teacher">مدرس</option>
+                </select>
+            </div>
+            <div class="form-input pt-30">
+                <input type="submit" name="submit" value="login">
+            </div>
+            <a href="#" class="forget">نسيت الباسورد</a>
+            <a asp-page="/Register" class="registration">انشاء حساب</a>
+        </div>
+    </form>
+</main>
