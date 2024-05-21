@@ -49,11 +49,11 @@ namespace DBproject.Pages
         [BindProperty]
         public string MultimediaLink { get; set; }
         public User CurrentUser { get; set; }
-        public List<Student> Students { get; set; } = new List<Student>
-    {
-        new Student { NId = 1, Name = "����", Phone = "0123456789" },
-        new Student { NId = 2, Name = "����", Phone = "01123456789" }
-    };
+    //    public List<Student> Students { get; set; } = new List<Student>
+    //{
+    //    new Student { NId = 1, Name = "����", Phone = "0123456789" },
+    //    new Student { NId = 2, Name = "����", Phone = "01123456789" }
+    //};
 
         //    public List<Payment> Payments { get; set; } = new List<Payment>
         //{

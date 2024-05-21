@@ -79,7 +79,7 @@ namespace DBproject.Pages
                     Hardness = 2;
                 else if (Hardness == 3)
                     Hardness = 3;
-                db.addquestions(ch, Hardness, ac_year, 27805190300771, q, Answer1, Answer2, Answer3, Answer4, CorrectAnswer);
+                db. AddQuestions(ch, Hardness, ac_year, 27805190300771, q, Answer1, Answer2, Answer3, Answer4, CorrectAnswer);
 
 
                 return RedirectToPage();

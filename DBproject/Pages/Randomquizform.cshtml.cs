@@ -28,7 +28,7 @@ namespace DBproject.Pages
 
         public IActionResult OnPost()
         {
-           int id = db.idquiz()+1;
+           int id = db.quizid()+1;
             int ac_yr = StudyLevel;
             int num_questions = NumQuestions;
             string topic = Topic;
@@ -39,8 +39,8 @@ namespace DBproject.Pages
             else if (Hardness == 3)
                 Hardness = 3;
 
-            db.addquiz(id, 27805190300771, topic, num_questions, ac_yr, Hardness);
-            db.quizQuestion(num_questions,id,ac_yr, Hardness);
+            db.AddQuiz(id, 27805190300771, topic, num_questions, ac_yr, Hardness);
+            db.QuizQuestion(num_questions,id,ac_yr, Hardness);
 
             return RedirectToPage();
         }
