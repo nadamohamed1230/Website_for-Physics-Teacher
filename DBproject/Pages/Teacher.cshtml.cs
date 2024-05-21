@@ -53,7 +53,7 @@ namespace DBproject.Pages
             // Generate quiz based on provided data
             // ...
 
-            return RedirectToPage();
+            return RedirectToPage("/Randomquizform");
         }
 
         public IActionResult OnPostAddMultimedia()

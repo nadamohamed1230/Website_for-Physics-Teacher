@@ -3,6 +3,20 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DBproject.Pages
 {
+    public class AssistantModel : PageModel
+    {
+/*        [BindProperty]
+        public string Question { get; set; }
+        [BindProperty]
+        public string Answer1 { get; set; }
+        [BindProperty]
+        public string Answer2 { get; set; }
+        [BindProperty]
+        public string Answer3 { get; set; }
+        [BindProperty]
+        public string Answer4 { get; set; }
+        [BindProperty]
+        public string CorrectAnswer { get; set; }*/
     //public class AssistantModel : PageModel
     //{
     //    [BindProperty]
@@ -50,12 +64,22 @@ namespace DBproject.Pages
     //    {
     //    }
 
+        public IActionResult OnPostAddQuestion()
+        {
+            // Add question logic
+            return RedirectToPage("/addingQue");
+        }
     //    public IActionResult OnPostAddQuestion()
     //    {
     //        // Add question logic
     //        return RedirectToPage();
     //    }
 
+        public IActionResult OnPostGenerateQuiz()
+        {
+            // Generate quiz logic
+            return RedirectToPage("/Randomquizform");
+        }
     //    public IActionResult OnPostGenerateQuiz()
     //    {
     //        // Generate quiz logic
