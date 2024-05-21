@@ -1,16 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
+using DBproject.Models;
 
 namespace DBproject.Pages
 {
     public class S3Model : PageModel
     {
+        public User CurrentUser { get; set; }
+
         public List<ModuleItem> Module1Items { get; set; }
         public List<ModuleItem> Module2Items { get; set; }
 
         public void OnGet()
         {
+            CurrentUser = HttpContext.Session.GetObject<User>("CurrentUser");
+
             Module1Items = new List<ModuleItem>
             {
                 new ModuleItem { Index = 1, Title = "«· Ì«— «·ﬂÂ—»Ï Êﬁ«‰Ê‰ «Ê„", VideoUrl = "https://youtu.be/g6NWRPSoDm4?feature=shared", Duration = "30:30", PdfUrl = "https://drive.google.com/file/d/1IrRHCcEi_PUAS9F12W-J-QvoudFyaaTs/view?usp=sharing" },

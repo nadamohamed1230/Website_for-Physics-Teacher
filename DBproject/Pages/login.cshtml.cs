@@ -1,70 +1,87 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using DBproject.Models;
-using System.Numerics;
-
+using DBproject.Pages;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 namespace DBproject.Pages
 {
+
     public class LoginModel : PageModel
     {
         private readonly DB _db;
 
-        public LoginModel()
-        {
-            _db = new DB();
-        }
         [BindProperty]
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         [BindProperty]
         public string Password { get; set; }
 
         [BindProperty]
         public string Role { get; set; }
-
-        public void OnGet()
+        public string Msg;
+        public LoginModel(DB db)
         {
+            _db = db;
         }
+
+        //public async Task<IActionResult> OnPostLoginAsync()
+        //{
+        //    var user = await _db.GetUserByUsernameAndPasswordAsync(ID, Password);
+        //    if (user != null)
+        //    {
+        //        HttpContext.Session.SetObject("CurrentUser", user);
+        //        return RedirectToPage("/Profile");
+        //    }
+
+        //    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+        //    return Page();
+        //}
 
         public async Task<IActionResult> OnPostAsync()
         {
-            User user = _db.ValidateUser(ID, Password, Role);
-
-            if (user != null)
+            var user = await _db.ValidateUserAsync(ID, Password, Role);
+            if (user == null)
             {
-                // Redirect users based on their role and academic year
-                switch (user.Role)
-                {
-                    case "Teacher":
-                        return RedirectToPage("/Teacher");
-                    case "Assistant":
-                        return RedirectToPage("/Assistant");
-                    case "Student":
-                        // Redirect students based on their academic year
-                        switch (user.AcademicYear)
-                        {
-                            case 1:
-                                return RedirectToPage("/S1"); // Replace "StudentYear1" with the actual page name for first-year students.
-                            case 2:
-                                return RedirectToPage("/S2"); // Replace "StudentYear2" with the actual page name for second-year students.
-                            case 3:
-                                return RedirectToPage("/S3"); // Replace "StudentYear3" with the actual page name for third-year students.
-                            default:
-                                // Handle unknown academic years
-                                return RedirectToPage("/Error"); // Redirect to an error page or handle it as appropriate.
-                        }
-                    case "Parent":
-                        return RedirectToPage("/Parent");
-                    default:
-                        // Handle unknown roles or any other custom logic
-                        return RedirectToPage("/Error"); // Redirect to an error page or handle it as appropriate.
-
-                }
+                Msg = "Invalid login attempt";
+                return Page();
             }
-
-            // If user authentication fails, redirect back to the login page
-            return RedirectToPage("/Login");
+            HttpContext.Session.SetObject("CurrentUser", user);
+            return RedirectToCorrectPage(user);
         }
 
+        private IActionResult RedirectToCorrectPage(User user)
+        {
+            // Redirect users based on their role and academic year
+            switch (user.Role)
+            {
+                case "teacher":
+                    return RedirectToPage("/Teacher");
+                case "assistant":
+                    return RedirectToPage("/Assistant");
+                case "student":
+                    return RedirectToStudentPage(user.AcademicYear);
+                case "parent":
+                    return RedirectToPage("/Parent");
+                default:
+                    // Handle unknown roles or any other custom logic
+                    return RedirectToPage("/Error");
+            }
+        }
+
+        private IActionResult RedirectToStudentPage(int academicYear)
+        {
+            switch (academicYear)
+            {
+                case 1:
+                    return RedirectToPage("/S1");
+                case 2:
+                    return RedirectToPage("/S2");
+                case 3:
+                    return RedirectToPage("/S3");
+                default:
+                    // Handle unknown academic years
+                    return RedirectToPage("/Error");
+            }
+        }
     }
 }

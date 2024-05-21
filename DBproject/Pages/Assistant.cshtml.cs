@@ -1,6 +1,7 @@
+using DBproject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-
+using Microsoft.AspNetCore.Http;
 namespace DBproject.Pages
 {
     public class AssistantModel : PageModel
@@ -33,7 +34,7 @@ namespace DBproject.Pages
         public string Title { get; set; }
         [BindProperty]
         public string MultimediaLink { get; set; }
-
+        public User CurrentUser { get; set; }
         public List<Student> Students { get; set; } = new List<Student>
     {
         new Student { NId = 1, Name = "íæÓÝ", Phone = "0123456789" },
@@ -48,6 +49,9 @@ namespace DBproject.Pages
 
         public void OnGet()
         {
+
+            CurrentUser = HttpContext.Session.GetObject<User>("CurrentUser");
+
         }
 
         public IActionResult OnPostAddQuestion()

@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
+using DBproject.Models;
 
 namespace DBproject.Pages
 {
@@ -42,10 +44,11 @@ namespace DBproject.Pages
         public List<Student> Students { get; set; }
         public List<Payment> Payments { get; set; }
         public List<TAs> TAs { get; set; }
-
+        public User CurrentUser { get; set; }
         public void OnGet()
         {
             // Initialize lists or fetch data from a database
+            CurrentUser = HttpContext.Session.GetObject<User>("CurrentUser");
             Students = GetStudentsFromDatabase();
             Payments = GetPaymentsFromDatabase();
             TAs = GetTAsFromDatabase();
