@@ -67,14 +67,18 @@
 <body>
     <div class="form-container">
         <h2>إضافة مساعد</h2>
-        <form method="post" asp-page-handler="AddTA">
+        <form method="post">
             <div class="form-group">
                 <label for="nid">الرقم التعريفى</label>
                 <input type="text" class="form-control" id="nid" name="NID" maxlength="14" minlength="14" required>
             </div>
             <div class="form-group">
-                <label for="name">الاسم</label>
-                <input type="text" class="form-control" id="name" name="Name" required>
+                <label for="fname">الاسم الأول</label>
+                <input type="text" class="form-control" id="fname" name="Fname" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">اسم العائلة</label>
+                <input type="text" class="form-control" id="lname" name="Lname" required>
             </div>
             <div class="form-group">
                 <label for="phone">رقم الهاتف</label>

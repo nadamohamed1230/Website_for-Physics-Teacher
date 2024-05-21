@@ -1,6 +1,7 @@
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using DBproject.models; 
+using System.ComponentModel.DataAnnotations;
 
 namespace DBproject.Pages
 {
@@ -10,7 +11,10 @@ namespace DBproject.Pages
         public string NID { get; set; }
 
         [BindProperty]
-        public string Name { get; set; }
+        public string Fname { get; set; }
+
+        [BindProperty]
+        public string Lname { get; set; }
 
         [BindProperty]
         public string Phone { get; set; }
@@ -18,12 +22,12 @@ namespace DBproject.Pages
         [BindProperty]
         public string Password { get; set; }
 
-        public IActionResult OnPostAddTA()
+        public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
-                // Add the TA to the database or process the form as needed
-                // ...
+                DB db = new DB();
+                db.AddAssistant(NID, Fname, Lname, Phone, Password);
 
                 return RedirectToPage("Teacher");
             }

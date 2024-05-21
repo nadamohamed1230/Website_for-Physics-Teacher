@@ -71,12 +71,28 @@
         <h2>تحديث معلومات الطالب</h2>
         <form method="post">
             <div class="form-group">
-                <label for="name">الاسم</label>
-                <input type="text" id="name" name="Student.Name" value="@Model.Student.Name" required />
+                <label for="fname">الاسم الأول</label>
+                <input type="text" id="fname" name="Student.FName" value="@Model.Student.FName" required />
+            </div>
+            <div class="form-group">
+                <label for="lname">اسم العائلة</label>
+                <input type="text" id="lname" name="Student.LName" value="@Model.Student.LName" required />
             </div>
             <div class="form-group">
                 <label for="phone">رقم الهاتف</label>
                 <input type="text" id="phone" name="Student.Phone" value="@Model.Student.Phone" required />
+            </div>
+            <div class="form-group">
+                <label for="mail">البريد الإلكتروني</label>
+                <input type="text" id="mail" name="Student.Mail" value="@Model.Student.Mail" required />
+            </div>
+            <div class="form-group">
+                <label for="ac_year">السنة الأكاديمية</label>
+                <input type="text" id="ac_year" name="Student.AcYear" value="@Model.Student.AcYear" required />
+            </div>
+            <div class="form-group">
+                <label for="pay_state">حالة الدفع</label>
+                <input type="text" id="pay_state" name="Student.PayState" value="@Model.Student.PayState" required />
             </div>
             <input type="hidden" name="Student.NId" value="@Model.Student.NId" />
             <button type="submit">تحديث</button>
