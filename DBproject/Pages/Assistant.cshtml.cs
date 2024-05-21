@@ -60,37 +60,26 @@ namespace DBproject.Pages
         //    new Payment { Id = 2, StudentName = "„Õ„œ", NationalId = "951919819819", PaymentStatus = "·„ Ì „ «·œ›⁄" }
         //};
 
-        //    public void OnGet()
-        //    {
-        //    }
+        public void OnGet()
+        {
+        }
 
         public IActionResult OnPostAddQuestion()
         {
             // Add question logic
             return RedirectToPage("/addingQue");
         }
-        //    public IActionResult OnPostAddQuestion()
-        //    {
-        //        // Add question logic
-        //        return RedirectToPage();
-        //    }
-
         public IActionResult OnPostGenerateQuiz()
         {
             // Generate quiz logic
             return RedirectToPage("/Randomquizform");
         }
-        //    public IActionResult OnPostGenerateQuiz()
-        //    {
-        //        // Generate quiz logic
-        //        return RedirectToPage();
-        //    }
 
-        //    public IActionResult OnPostAddMultimedia()
-        //    {
-        //        // Add multimedia logic
-        //        return RedirectToPage();
-        //    }
+        public IActionResult OnPostAddMultimedia()
+        {
+            // Add multimedia logic
+            return RedirectToPage();
+        }
 
         //    public IActionResult OnPostDeleteStudent(int id)
         //    {
